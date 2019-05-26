@@ -1,0 +1,28 @@
+<style>
+    .farb-item .preview {
+        border: 1px solid grey;
+        text-align: center;
+    }
+    .farb-item .preview p {
+        margin: 0.5em;
+    }
+</style>
+
+<div class="farb-item" layout="row" layout-align="start center">
+    <div flex="30">{{$ctrl.farbObj.name}}</div>
+
+
+    <div flex="30" class="preview" style="background-color: {{$ctrl.farbObj.hexWert()}};">
+        <div style="color: {{ $ctrl.farbObj.helligkeit() &lt; 128 ? 'white' : 'black' }}">
+            <p>{{$ctrl.farbObj.hexWert()}}</p>
+        </div>
+    </div>
+
+    <div flex></div>
+
+    <md-button class="md-fab md-mini md-primary" ui-sref="farbe-bearbeiten({obj: $ctrl.farbObj})">
+        <md-icon md-font-icon="material-icons">edit</md-icon>
+    </md-button>
+
+    <!--<div>geändert {{$ctrl.farbe.datum | dateFilter}}</div>-->
+</div>

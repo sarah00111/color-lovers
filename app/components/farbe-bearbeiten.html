@@ -1,0 +1,75 @@
+<style>
+    .farb-editor > * {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+    .farb-editor > md-toolbar {
+        margin: 0 0 0.5em 0;
+    }
+    .farb-editor .preview {
+        border: 1px solid grey;
+        text-align: center;
+    }
+</style>
+
+<form name="$ctrl.formular" class="farb-editor" layout="column">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" ui-sref="farben-anzeige">
+                <md-icon md-font-icon="material-icons">arrow_back</md-icon>
+            </md-button>
+
+            <div flex></div>
+            <h2 md-truncate>Farbe bearbeiten</h2>
+            <div flex></div>
+
+            <md-button class="md-icon-button"
+                       ng-disabled="$ctrl.formular.$invalid"
+                       ng-click="$ctrl.senden()">
+                <md-icon md-font-icon="material-icons">check</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-input-container>
+        <label>Name der Farbe</label>
+        <input type="text" name="name" ng-model="$ctrl.obj.name" required>
+        <div ng-messages="$ctrl.formular.name.$error">
+            <div ng-message="required">Die Farbe benötigt einen Namen</div>
+        </div>
+    </md-input-container>
+
+    <md-slider-container>
+        <span>R</span>
+        <md-slider min="0" max="255" ng-model="$ctrl.obj.r" class="md-warn">
+        </md-slider>
+        <md-input-container>
+            <input type="number" ng-model="$ctrl.obj.r">
+        </md-input-container>
+    </md-slider-container>
+
+    <md-slider-container>
+        <span>G</span>
+        <md-slider ng-model="$ctrl.obj.g" min="0" max="255" class="md-accent">
+        </md-slider>
+        <md-input-container>
+            <input type="number" ng-model="$ctrl.obj.g">
+        </md-input-container>
+    </md-slider-container>
+
+    <md-slider-container>
+        <span class="md-body-1">B</span>
+        <md-slider ng-model="$ctrl.obj.b" min="0" max="255" class="md-primary">
+        </md-slider>
+        <md-input-container>
+            <input type="number" ng-model="$ctrl.obj.b">
+        </md-input-container>
+    </md-slider-container>
+
+
+    <div class="preview" style="background-color: {{ $ctrl.obj.hexWert() }};">
+        <div style="color: {{ $ctrl.obj.helligkeit() &lt; 128 ? 'white' : 'black' }}">
+            <p>{{ $ctrl.obj.hexWert()}}</p>
+        </div>
+    </div>
+</form>

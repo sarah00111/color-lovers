@@ -1,0 +1,40 @@
+<div>
+    <md-toolbar layout-align="center start">
+        Color Lovers
+    </md-toolbar>
+
+    <div flex layout="row" layout-align="center center">
+        <md-input-container flex>
+            <label>Suchen</label>
+            <input type="text"
+                   flex
+                   ng-model="$ctrl.suchParam"
+                   ng-model-options="{debounce:300}"
+                   ng-change="$ctrl.suchen()">
+        </md-input-container>
+
+        <md-input-container>
+            <md-menu>
+                <md-button class="md-primary md-raised"
+                           ng-click="$mdMenu.open()">
+                    Sortieren</md-button>
+                <md-menu-content width="2" ng-mouseleave="$mdMenu.close()" layout="column">
+                    <md-menu-item>
+                        <md-button ng-click="$ctrl.sortieren('title')">Name</md-button>
+                        <md-button ng-click="$ctrl.sortieren('red')">Rot</md-button>
+                        <md-button ng-click="$ctrl.sortieren('green')">Grün</md-button>
+                        <md-button ng-click="$ctrl.sortieren('blue')">Blau</md-button>
+                        <md-button ng-click="$ctrl.sortieren('hue')">Farbwert</md-button>
+                        <md-button ng-click="$ctrl.sortieren('saturation')">Sättigung</md-button>
+                        <md-button ng-click="$ctrl.sortieren('value')">Helligkeit</md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-input-container>
+
+    </div>
+
+
+    <farb-eintrag ng-repeat="farbe in $ctrl.farbenAry"
+                  farb-obj="farbe"></farb-eintrag>
+</div>
