@@ -42,7 +42,7 @@ app.controller("FarbeBearbeitenController", function ($log, Farbe, $stateParams,
             'blue': this.obj.b
         };
 
-        FarbServerService.bearbeitet(this.obj.id, data)
+        FarbServerService.bearbeitet(this.obj)
             .then(response => {
                 $state.go("farben-anzeige");
             });

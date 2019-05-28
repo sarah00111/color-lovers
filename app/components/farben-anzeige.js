@@ -22,7 +22,7 @@ app.controller("FarbenAnzeigeController", function ($log, FarbServerService) {
     $log.debug("FarbenAnzeigeController()");
 
     this.$onInit = () => {
-        FarbServerService.farbenladen(false, {size: 20})
+        FarbServerService.farbenladen({size: 20})
             .then(response => {
                 this.farbenAry = response;
             });
@@ -30,14 +30,14 @@ app.controller("FarbenAnzeigeController", function ($log, FarbServerService) {
     }
 
     this.suchen = () => {
-        FarbServerService.farbenladen(true, {title: this.suchParam})
+        FarbServerService.farbenladen({title: this.suchParam})
             .then(response => {
                 this.farbenAry = response;
             });
     }
 
     this.sortieren = (param) => {
-        FarbServerService.farbenladen(true, {sort: param})
+        FarbServerService.farbenladen({sort: param})
             .then(response => {
                 this.farbenAry = response;
             });
